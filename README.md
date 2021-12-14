@@ -15,6 +15,7 @@ Now supported info (keywords are listed in the double quotation):
 - mulliken charge of the optimized structures, "`charge`"
 - dipole moment, "`dipole`"
 - information of the HOMO/LUMO, "`orbit`" 
+- information of the entropy, "`S`" | "`entropy`"
 
 ***
 Example:
