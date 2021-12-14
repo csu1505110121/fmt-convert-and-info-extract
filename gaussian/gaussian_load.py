@@ -197,7 +197,30 @@ def load_gau(filename,prop):
 		else:
 			print('Not Normal Terminated!')
 		
-
+	elif prop=='entropy' or prop=='S':
+		E_ = []
+		Cv_ = []
+		S_ = []
+		if is_normal(filename):
+			with open(filename,'r') as f:
+				while True:
+					line = f.readline()
+					if not line:
+						break
+					else:
+						if '                    E (Thermal)             CV                S' in line:
+							# skip the unit line: KCal/Mol        Cal/Mol-Kelvin    Cal/Mol-Kelvin
+							line = f.readline()
+							for x in range(5):
+								line = f.readline()
+								E_.append(float(line.split()[1]))
+								Cv_.append(float(line.split()[2]))
+								S_.append(float(line.split()[3]))
+			# order:
+			#		Total -> Elec -> Trans -> Rot -> Vib
+			return E_, Cv_, S_
+		else:
+			print('Not Normal Terminated!')
 
 		#print(xyzs[-1])
 		#print(qs)
